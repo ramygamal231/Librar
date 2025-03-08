@@ -40,3 +40,11 @@ Librar is a fully functional online library platform designed to provide users w
   - 🎨 CSS3 – Styling and UI components
   - ⚡ JavaScript – Client-side functionality
   - 📦 Bootstrap – Responsive Design
+
+
+## 👨‍💻 **Usage**
+1. 🏠 Visit the Librar Homepage
+2. 👤 Create an Account / Log In 
+3. 📚 Browse or Search for Books
+4. 👆 Click the book you want to read
+5. 📖 Read Online 
