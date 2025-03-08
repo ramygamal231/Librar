@@ -16,6 +16,13 @@ Librar is a fully functional online library platform designed to provide users w
 
 ## 🌟 **Core Features**
 - **📂 Categories of Books:** Organized book collection by genres and topics for easy navigation.
-- **🔎 Search Functionality:** Search by title, author, or keyword.
+- **🔍 Search Functionality:** Search by title, author, or keyword.
 - **🔑 User Authentication:** Secure login and registration for personalized user experience.
 - **📖 Online Reading:** Read books directly from the website, offering a smooth reading experience.
+
+
+## 🔜 **Coming Soon**
+- **🤖 Personalized Recommendations:** AI-driven book suggestions based on reading history.
+- **⭐ User Reviews & Ratings:** Allow users to rate and review books.
+- **🔎 Filter Functionality:** Filter results based on category, genre, or publication date.
+- **🎧 Audiobook Support:** Integration of audiobooks for an immersive listening experience.
