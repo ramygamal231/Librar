@@ -53,3 +53,6 @@ Librar is a fully functional online library platform designed to provide users w
 ## 👥 Team 
 - **Syed Fawaz Ali**
 - **Ramy Gamal Ibrahim**
+
+## 🎬 Demo Video
+- **[Click Here](https://drive.google.com/file/d/19d5P1yiFDH7DuTv7bQlO08matfNStg39/view?usp=drive_link)** 
