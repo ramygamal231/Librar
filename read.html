@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        #pdfCanvas {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            display: block;
+            border: 1px solid #ccc;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        main {
+            text-align: center; /* Center-align content */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+<header class="bg-dark p-3 text-center">
+    <div class="container">
+        <img src="images-20241030T183625Z-001/images/logo.png" width="200px" class="mx-auto d-block mb-3 logo">
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a href="home.html" class="nav-link" style="color: white;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="aboutus.html" class="nav-link" style="color: white;">About Us</a>
+                </li>
+                <!-- Dropdown menu for Categories -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="fiction.html">Fiction</a>
+                        <a class="dropdown-item" href="business.html">Business</a>
+                        <a class="dropdown-item" href="history.html">History</a>
+                        <a class="dropdown-item" href="technology.html">Technology</a>
+                        <!-- Add more categories as needed -->
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link" style="color: white;">Login/Sign-up</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+    <header class="bg-dark text-white text-center py-3">
+        <h1 id="bookTitle">Book Title</h1>
+    </header>
+    <main class="container my-4">
+        <canvas id="pdfCanvas"></canvas>
+        <div class="nav-buttons">
+            <button id="prevPage" class="btn btn-secondary">Previous Page</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage" class="btn btn-secondary">Next Page</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <p>Email: info@onlinelibrary.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">FAQ</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-white">FB</a>
+                    <a href="#" class="text-white">TW</a>
+                    <a href="#" class="text-white">IG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script>
+        // Redirect to login if the user is not authenticated
+        fetch('/auth/check-session', { credentials: 'include' })
+            .then(response => {
+                if (!response.ok) {
+                    window.location.href = '/login.html';
+                }
+            })
+            .catch(() => {
+                window.location.href = '/login.html';
+            });
+
+        const params = new URLSearchParams(window.location.search);
+        const bookId = params.get('id');
+
+        if (!bookId) {
+            alert('Book ID not found in URL!');
+        } else {
+            fetch(`/data/books/${bookId}`)
+                .then(response => response.json())
+                .then(book => {
+                    document.getElementById('bookTitle').innerText = book.title;
+                    loadPDF(book.pdfUrl);
+                })
+                .catch(err => console.error('Error loading book:', err));
+        }
+
+        let pdfDoc = null,
+            pageNum = 1,
+            pageRendering = false,
+            pageNumPending = null,
+            scale = 1.2,
+            canvas = document.getElementById('pdfCanvas'),
+            ctx = canvas.getContext('2d');
+
+        function loadPDF(url) {
+            pdfjsLib.getDocument(url).promise.then(pdf => {
+                pdfDoc = pdf;
+                document.getElementById('pageInfo').textContent = `Page 1 of ${pdf.numPages}`;
+                renderPage(pageNum);
+            });
+        }
+
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(page => {
+                const viewport = page.getViewport({ scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport,
+                };
+                page.render(renderContext).promise.then(() => {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+
+                document.getElementById('pageInfo').textContent = `Page ${pageNum} of ${pdfDoc.numPages}`;
+            });
+        }
+
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (pageNum <= 1) return;
+            pageNum--;
+            renderPage(pageNum);
+        });
+
+        document.getElementById('nextPage').addEventListener('click', () => {
+            if (pageNum >= pdfDoc.numPages) return;
+            pageNum++;
+            renderPage(pageNum);
+        });
+    </script>
+</body>
+</html>

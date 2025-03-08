@@ -1,0 +1,119 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Reset default margins */
+    padding: 0; /* Reset default padding */
+}
+
+header {
+    padding: 10px 0; /* Adjust header padding for smaller navbar */
+}
+
+header .nav {
+    flex-direction: row;
+}
+
+header .nav .nav-item {
+    margin: 0 10px; /* Reduce margin for nav items */
+}
+
+header .nav .nav-link {
+    color: #FFFFFF; /* Ensures text color for nav links */
+}
+
+/* Link hover effect */
+header .nav .nav-item .nav-link:hover {
+    color: #963fff !important;
+    text-decoration: underline;
+}
+
+header .logo {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Reset margin */
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a:hover {
+    color: #D3B0FF;
+}
+
+/* Main Section Styling */
+h2 {
+    color: #333333;
+    margin-top: 20px;
+}
+
+.search-books input {
+    margin-top: 10px;
+}
+
+.featured-books .card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    background-color: #F8F8F8;
+}
+
+.categories .btn {
+    margin-bottom: 15px;
+}
+
+.latest-additions .table th, 
+.latest-additions .table td {
+    text-align: center;
+}
+
+/* Footer Styling */
+footer h5 {
+    margin-bottom: 10px;
+}
+
+footer a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #D3B0FF;
+}
+
+/* Jumbotron Styling */
+.jumbotron {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+.jumbotron h1 {
+    font-size: 2rem; /* Smaller font size */
+}
+
+.jumbotron p {
+    font-size: 1.2rem; /* Adjusted font size */
+}
+
+/* Carousel Styling */
+.carousel-control-prev-icon, 
+.carousel-control-next-icon {
+    background-color: #000; /* Make carousel controls more visible */
+}
+
+.d-flex button {
+    margin-right: 10px; /* Add some space between buttons */
+}
+
+.d-flex button:last-child {
+    margin-right: 0; /* Remove margin for the last button */
+}
