@@ -19,6 +19,7 @@ Librar is a fully functional online library platform designed to provide users w
 - **🔍 Search Functionality:** Search by title, author, or keyword.
 - **🔑 User Authentication:** Secure login and registration for personalized user experience.
 - **📖 Online Reading:** Read books directly from the website, offering a smooth reading experience.
+- **👤 Admin Features:** Admins can add, update, or delete books from the database.
 
 
 ## 🔜 **Coming Soon**
