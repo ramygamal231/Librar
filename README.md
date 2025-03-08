@@ -27,3 +27,16 @@ Librar is a fully functional online library platform designed to provide users w
 - **⭐ User Reviews & Ratings:** Allow users to rate and review books.
 - **🔎 Filter Functionality:** Filter results based on category, genre, or publication date.
 - **🎧 Audiobook Support:** Integration of audiobooks for an immersive listening experience.
+
+
+## 🔧 **Technology Stack**
+
+- **Backend**:
+  - 🗄️ MYSQL – Database Management
+  - ⚙️ Node.js – For additional functionalities
+
+- **Frontend**:
+  - 📄 HTML5 – Markup for web content
+  - 🎨 CSS3 – Styling and UI components
+  - ⚡ JavaScript – Client-side functionality
+  - 📦 Bootstrap – Responsive Design
