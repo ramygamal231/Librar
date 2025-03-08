@@ -47,4 +47,9 @@ Librar is a fully functional online library platform designed to provide users w
 2. 👤 Create an Account / Log In 
 3. 📚 Browse or Search for Books
 4. 👆 Click the book you want to read
-5. 📖 Read Online 
+5. 📖 Read Online
+
+
+## 👥 Team 
+- **Syed Fawaz Ali**
+- **Ramy Gamal Ibrahim**
